@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wuthering Heights: An Illustrated Summary (Illustrated)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --bg: #f8f5f0;
+    --bg-card: #ffffff;
+    --text: #1a1a2e;
+    --text-muted: #6b7280;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
+    --border: #e5e7eb;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 40px rgba(0, 0, 0, 0.12);
+    --radius: 16px;
+    --cover-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+[data-theme="dark"] {
+    --bg: #0f0f1a;
+    --bg-card: #1a1a2e;
+    --text: #e5e5e5;
+    --text-muted: #9ca3af;
+    --accent: #818cf8;
+    --accent-hover: #a5b4fc;
+    --border: #2d2d44;
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 8px 40px rgba(0, 0, 0, 0.4);
+    --cover-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html {
+    scroll-behavior: smooth;
+}
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 17px;
+    line-height: 1.8;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* -- Top bar -- */
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: color-mix(in srgb, var(--bg-card) 85%, transparent);
+}
+.topbar-title {
+    font-size: 0.85em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+.theme-toggle {
+    background: var(--border);
+    border: none;
+    border-radius: 999px;
+    width: 48px;
+    height: 28px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s ease;
+}
+.theme-toggle::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: transform 0.3s ease, background 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+[data-theme="dark"] .theme-toggle::after {
+    transform: translateX(20px);
+}
+.theme-label {
+    font-size: 0.75em;
+    color: var(--text-muted);
+    margin-right: 8px;
+}
+
+/* -- Hero / Cover -- */
+.hero {
+    text-align: center;
+    padding: 80px 24px 60px;
+}
+.cover {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 40px;
+    border-radius: var(--radius);
+    box-shadow: var(--cover-shadow);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.cover:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 28px 70px rgba(0,0,0,0.3);
+}
+.book-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 3em;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    background: linear-gradient(135deg, var(--accent), var(--text));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.book-subtitle {
+    font-size: 1.1em;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0 0 16px;
+}
+.book-meta {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    letter-spacing: 0.03em;
+}
+
+/* -- Chapter navigation -- */
+.chapter-nav {
+    max-width: 800px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+}
+.chapter-nav-title {
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+.chapter-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+}
+.chapter-nav-list a {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 0.82em;
+    font-weight: 500;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 10%, transparent);
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.chapter-nav-list a:hover {
+    background: color-mix(in srgb, var(--accent) 20%, transparent);
+    transform: translateY(-1px);
+}
+
+/* -- Chapters -- */
+.chapters {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+.chapter {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin: 0 0 48px;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.chapter:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+.chapter-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.chapter-body {
+    padding: 32px 36px 36px;
+}
+.chapter-number {
+    font-size: 0.75em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+.chapter-title {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0 0 20px;
+    line-height: 1.3;
+}
+.chapter-summary p {
+    margin: 0 0 1.2em;
+    color: var(--text);
+    line-height: 1.85;
+}
+.chapter-summary p:last-child {
+    margin-bottom: 0;
+}
+audio {
+    width: 100%;
+    margin: 20px 0 0;
+    border-radius: 8px;
+}
+
+/* -- Back cover -- */
+.back-cover {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 60px auto;
+    border-radius: var(--radius);
+    box-shadow: var(--cover-shadow);
+}
+
+/* -- Footer -- */
+footer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+    text-align: center;
+    font-size: 0.85em;
+    color: var(--text-muted);
+}
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+/* -- Responsive -- */
+@media (max-width: 600px) {
+    .book-title { font-size: 2em; }
+    .chapter-body { padding: 24px 20px 28px; }
+    .hero { padding: 60px 16px 40px; }
+    .cover { max-width: 280px; }
+}
+    </style>
+</head>
+<body>
+<div class="topbar">
+    <span class="topbar-title">Wuthering Heights &middot; Illustrated Edition</span>
+    <div style="display:flex;align-items:center;">
+        <span class="theme-label">Theme</span>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode"></button>
+    </div>
+</div>
+<div class="hero">
+    <img class="cover" src="images_cinematic/cover.png" alt="Wuthering Heights cover">
+    <h1 class="book-title">Wuthering Heights</h1>
+    <p class="book-subtitle">An Illustrated Summary</p>
+    <p class="book-meta">Illustrated Edition &bull; 34 Chapters</p>
+</div>
+<nav class="chapter-nav">
+    <div class="chapter-nav-title">Chapters</div>
+    <ul class="chapter-nav-list">
+        <li><a href="#chapter-1">CHAPTER I</a></li>
+        <li><a href="#chapter-2">CHAPTER II</a></li>
+        <li><a href="#chapter-3">CHAPTER III</a></li>
+        <li><a href="#chapter-4">CHAPTER IV</a></li>
+        <li><a href="#chapter-5">CHAPTER V</a></li>
+        <li><a href="#chapter-6">CHAPTER VI</a></li>
+        <li><a href="#chapter-7">CHAPTER VII</a></li>
+        <li><a href="#chapter-8">CHAPTER VIII</a></li>
+        <li><a href="#chapter-9">CHAPTER IX</a></li>
+        <li><a href="#chapter-10">CHAPTER X</a></li>
+        <li><a href="#chapter-11">CHAPTER XI</a></li>
+        <li><a href="#chapter-12">CHAPTER XII</a></li>
+        <li><a href="#chapter-13">CHAPTER XIII</a></li>
+        <li><a href="#chapter-14">CHAPTER XIV</a></li>
+        <li><a href="#chapter-15">CHAPTER XV</a></li>
+        <li><a href="#chapter-16">CHAPTER XVI</a></li>
+        <li><a href="#chapter-17">CHAPTER XVII</a></li>
+        <li><a href="#chapter-18">CHAPTER XVIII</a></li>
+        <li><a href="#chapter-19">CHAPTER XIX</a></li>
+        <li><a href="#chapter-20">CHAPTER XX</a></li>
+        <li><a href="#chapter-21">CHAPTER XXI</a></li>
+        <li><a href="#chapter-22">CHAPTER XXII</a></li>
+        <li><a href="#chapter-23">CHAPTER XXIII</a></li>
+        <li><a href="#chapter-24">CHAPTER XXIV</a></li>
+        <li><a href="#chapter-25">CHAPTER XXV</a></li>
+        <li><a href="#chapter-26">CHAPTER XXVI</a></li>
+        <li><a href="#chapter-27">CHAPTER XXVII</a></li>
+        <li><a href="#chapter-28">CHAPTER XXVIII</a></li>
+        <li><a href="#chapter-29">CHAPTER XXIX</a></li>
+        <li><a href="#chapter-30">CHAPTER XXX</a></li>
+        <li><a href="#chapter-31">CHAPTER XXXI</a></li>
+        <li><a href="#chapter-32">CHAPTER XXXII</a></li>
+        <li><a href="#chapter-33">CHAPTER XXXIII</a></li>
+        <li><a href="#chapter-34">CHAPTER XXXIV</a></li>
+    </ul>
+</nav>
+<div class="chapters">
+    <section class="chapter" id="chapter-1">
+        <img class="chapter-image" src="images_cinematic/chapter_1.png" alt="CHAPTER I illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 1</div>
+            <h2 class="chapter-title">CHAPTER I</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-2">
+        <img class="chapter-image" src="images_cinematic/chapter_2.png" alt="CHAPTER II illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 2</div>
+            <h2 class="chapter-title">CHAPTER II</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-3">
+        <img class="chapter-image" src="images_cinematic/chapter_3.png" alt="CHAPTER III illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 3</div>
+            <h2 class="chapter-title">CHAPTER III</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-4">
+        <img class="chapter-image" src="images_cinematic/chapter_4.png" alt="CHAPTER IV illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 4</div>
+            <h2 class="chapter-title">CHAPTER IV</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-5">
+        <img class="chapter-image" src="images_cinematic/chapter_5.png" alt="CHAPTER V illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 5</div>
+            <h2 class="chapter-title">CHAPTER V</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-6">
+        <img class="chapter-image" src="images_cinematic/chapter_6.png" alt="CHAPTER VI illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 6</div>
+            <h2 class="chapter-title">CHAPTER VI</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-7">
+        <img class="chapter-image" src="images_cinematic/chapter_7.png" alt="CHAPTER VII illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 7</div>
+            <h2 class="chapter-title">CHAPTER VII</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-8">
+        <img class="chapter-image" src="images_cinematic/chapter_8.png" alt="CHAPTER VIII illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 8</div>
+            <h2 class="chapter-title">CHAPTER VIII</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-9">
+        <img class="chapter-image" src="images_cinematic/chapter_9.png" alt="CHAPTER IX illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 9</div>
+            <h2 class="chapter-title">CHAPTER IX</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-10">
+        <img class="chapter-image" src="images_cinematic/chapter_10.png" alt="CHAPTER X illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 10</div>
+            <h2 class="chapter-title">CHAPTER X</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-11">
+        <img class="chapter-image" src="images_cinematic/chapter_11.png" alt="CHAPTER XI illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 11</div>
+            <h2 class="chapter-title">CHAPTER XI</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-12">
+        <img class="chapter-image" src="images_cinematic/chapter_12.png" alt="CHAPTER XII illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 12</div>
+            <h2 class="chapter-title">CHAPTER XII</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-13">
+        <img class="chapter-image" src="images_cinematic/chapter_13.png" alt="CHAPTER XIII illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 13</div>
+            <h2 class="chapter-title">CHAPTER XIII</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-14">
+        <img class="chapter-image" src="images_cinematic/chapter_14.png" alt="CHAPTER XIV illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 14</div>
+            <h2 class="chapter-title">CHAPTER XIV</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-15">
+        <img class="chapter-image" src="images_cinematic/chapter_15.png" alt="CHAPTER XV illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 15</div>
+            <h2 class="chapter-title">CHAPTER XV</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-16">
+        <img class="chapter-image" src="images_cinematic/chapter_16.png" alt="CHAPTER XVI illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 16</div>
+            <h2 class="chapter-title">CHAPTER XVI</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-17">
+        <img class="chapter-image" src="images_cinematic/chapter_17.png" alt="CHAPTER XVII illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 17</div>
+            <h2 class="chapter-title">CHAPTER XVII</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-18">
+        <img class="chapter-image" src="images_cinematic/chapter_18.png" alt="CHAPTER XVIII illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 18</div>
+            <h2 class="chapter-title">CHAPTER XVIII</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-19">
+        <img class="chapter-image" src="images_cinematic/chapter_19.png" alt="CHAPTER XIX illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 19</div>
+            <h2 class="chapter-title">CHAPTER XIX</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-20">
+        <img class="chapter-image" src="images_cinematic/chapter_20.png" alt="CHAPTER XX illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 20</div>
+            <h2 class="chapter-title">CHAPTER XX</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-21">
+        <img class="chapter-image" src="images_cinematic/chapter_21.png" alt="CHAPTER XXI illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 21</div>
+            <h2 class="chapter-title">CHAPTER XXI</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-22">
+        <img class="chapter-image" src="images_cinematic/chapter_22.png" alt="CHAPTER XXII illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 22</div>
+            <h2 class="chapter-title">CHAPTER XXII</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-23">
+        <img class="chapter-image" src="images_cinematic/chapter_23.png" alt="CHAPTER XXIII illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 23</div>
+            <h2 class="chapter-title">CHAPTER XXIII</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-24">
+        <img class="chapter-image" src="images_cinematic/chapter_24.png" alt="CHAPTER XXIV illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 24</div>
+            <h2 class="chapter-title">CHAPTER XXIV</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-25">
+        <img class="chapter-image" src="images_cinematic/chapter_25.png" alt="CHAPTER XXV illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 25</div>
+            <h2 class="chapter-title">CHAPTER XXV</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-26">
+        <img class="chapter-image" src="images_cinematic/chapter_26.png" alt="CHAPTER XXVI illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 26</div>
+            <h2 class="chapter-title">CHAPTER XXVI</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-27">
+        <img class="chapter-image" src="images_cinematic/chapter_27.png" alt="CHAPTER XXVII illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 27</div>
+            <h2 class="chapter-title">CHAPTER XXVII</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-28">
+        <img class="chapter-image" src="images_cinematic/chapter_28.png" alt="CHAPTER XXVIII illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 28</div>
+            <h2 class="chapter-title">CHAPTER XXVIII</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-29">
+        <img class="chapter-image" src="images_cinematic/chapter_29.png" alt="CHAPTER XXIX illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 29</div>
+            <h2 class="chapter-title">CHAPTER XXIX</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-30">
+        <img class="chapter-image" src="images_cinematic/chapter_30.png" alt="CHAPTER XXX illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 30</div>
+            <h2 class="chapter-title">CHAPTER XXX</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-31">
+        <img class="chapter-image" src="images_cinematic/chapter_31.png" alt="CHAPTER XXXI illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 31</div>
+            <h2 class="chapter-title">CHAPTER XXXI</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-32">
+        <img class="chapter-image" src="images_cinematic/chapter_32.png" alt="CHAPTER XXXII illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 32</div>
+            <h2 class="chapter-title">CHAPTER XXXII</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-33">
+        <img class="chapter-image" src="images_cinematic/chapter_33.png" alt="CHAPTER XXXIII illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 33</div>
+            <h2 class="chapter-title">CHAPTER XXXIII</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+    <section class="chapter" id="chapter-34">
+        <img class="chapter-image" src="images_cinematic/chapter_34.png" alt="CHAPTER XXXIV illustration">
+        <div class="chapter-body">
+            <div class="chapter-number">Chapter 34</div>
+            <h2 class="chapter-title">CHAPTER XXXIV</h2>
+            <div class="chapter-summary">
+            </div>
+        </div>
+    </section>
+</div>
+<img class="back-cover" src="images_cinematic/back_cover.png" alt="Back cover">
+<footer>Generated by Book Transformer</footer>
+<script>(function() {
+    const toggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('theme');
+    if (saved) html.setAttribute('data-theme', saved);
+    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) html.setAttribute('data-theme', 'dark');
+    toggle.addEventListener('click', function() {
+        const current = html.getAttribute('data-theme');
+        const next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+})();</script>
+</body>
+</html>
